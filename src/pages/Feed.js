@@ -46,21 +46,23 @@ const Feed = () => {
             </View>
             <Image
               style={styles.feedImage}
-              source={{uri: `http://192.168.1.165:3333/${item.image}`}}
+              source={{uri: `http://192.168.1.165:3333/files/${item.image}`}}
             />
             <View style={styles.footer}>
               <View style={styles.actions}>
-                <TouchableOpacity>
+                <TouchableOpacity style={styles.action}>
                   <Image source={like} />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity style={styles.action}>
                   <Image source={comment} />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity style={styles.action}>
                   <Image source={send} />
                 </TouchableOpacity>
               </View>
-              <Text style={styles.likes}>{item.likes}</Text>
+              <Text style={styles.likes}>{`${item.likes} curtida${
+                item.likes !== 1 ? 's' : ''
+              }`}</Text>
               <Text style={styles.description}>{item.description}</Text>
               <Text style={styles.hashtags}>{item.hashtags}</Text>
             </View>
@@ -85,6 +87,55 @@ Feed.navigationOptions = ({navigation}) => {
   };
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  feedItem: {
+    marginVertical: 10,
+  },
+  header: {
+    paddingHorizontal: 15,
+
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  name: {
+    fontSize: 14,
+    color: '#000',
+  },
+  place: {
+    fontSize: 12,
+    color: '#666',
+    marginTop: 2,
+  },
+  feedImage: {
+    width: '100%',
+    height: 400,
+    marginVertical: 15,
+  },
+  footer: {
+    paddingHorizontal: 15,
+  },
+  actions: {
+    flexDirection: 'row',
+  },
+  action: {
+    marginRight: 8,
+  },
+  likes: {
+    marginTop: 15,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  description: {
+    lineHeight: 18,
+    color: '#000',
+  },
+  hashtags: {
+    color: '#7159c1',
+  },
+});
 
 export default Feed;
