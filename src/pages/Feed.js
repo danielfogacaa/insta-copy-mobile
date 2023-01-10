@@ -7,6 +7,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import io from 'socket.io-client';
 
 import api from '../services/api';
 
@@ -25,8 +26,34 @@ const Feed = () => {
     setPosts(data);
   };
 
+  const registerToSocket = async () => {
+    const socket = io('http://192.168.1.165:3333', {transports: ['websocket']});
+
+    socket.on('post', newPost => {
+      setPosts(oldState => {
+        if (!oldState.some(elem => elem._id === newPost._id)) {
+          return [newPost, ...oldState];
+        } else {
+          return [...oldState];
+        }
+      });
+    });
+
+    socket.on('like', likedPost => {
+      setPosts(oldState => {
+        return oldState.map(post =>
+          post._id === likedPost._id ? likedPost : post,
+        );
+      });
+    });
+  };
+
+  const handleLike = async id => {
+    api.post(`/posts/${id}/like`);
+  };
+
   useEffect(() => {
-    //registerToSocket();
+    registerToSocket();
     getResponse();
   }, []);
 
@@ -50,7 +77,9 @@ const Feed = () => {
             />
             <View style={styles.footer}>
               <View style={styles.actions}>
-                <TouchableOpacity style={styles.action}>
+                <TouchableOpacity
+                  style={styles.action}
+                  onPress={() => handleLike(item._id)}>
                   <Image source={like} />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.action}>
