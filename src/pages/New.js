@@ -96,51 +96,57 @@ New.navigationOptions = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 30,
   },
-  feedItem: {
-    marginVertical: 10,
-  },
-  header: {
-    paddingHorizontal: 15,
 
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  selectButton: {
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#7159c1',
+    borderStyle: 'dashed',
+    height: 42,
+
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  name: {
-    fontSize: 14,
-    color: '#000',
+
+  selectButtonText: {
+    fontSize: 16,
+    color: '#5037a0',
   },
-  place: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 2,
+
+  preview: {
+    width: 100,
+    height: 100,
+    marginTop: 10,
+    alignSelf: 'center',
+    borderRadius: 4,
   },
-  feedImage: {
-    width: '100%',
-    height: 400,
-    marginVertical: 15,
+
+  input: {
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    padding: 15,
+    marginTop: 10,
+    fontSize: 16,
   },
-  footer: {
-    paddingHorizontal: 15,
-  },
-  actions: {
-    flexDirection: 'row',
-  },
-  action: {
-    marginRight: 8,
-  },
-  likes: {
+
+  shareButton: {
+    backgroundColor: '#7159c1',
+    borderRadius: 4,
+    height: 42,
     marginTop: 15,
+
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  shareButtonText: {
     fontWeight: 'bold',
-    color: '#000',
-  },
-  description: {
-    lineHeight: 18,
-    color: '#000',
-  },
-  hashtags: {
-    color: '#7159c1',
+    fontSize: 16,
+    color: '#FFF',
   },
 });
 
