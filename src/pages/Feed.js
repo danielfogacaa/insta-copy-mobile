@@ -49,7 +49,7 @@ const Feed = () => {
   };
 
   const handleLike = async id => {
-    api.post(`/posts/${id}/like`);
+    await api.post(`/posts/${id}/like`);
   };
 
   useEffect(() => {
@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
+    fontWeight: 'bold',
     fontSize: 14,
     color: '#000',
   },
